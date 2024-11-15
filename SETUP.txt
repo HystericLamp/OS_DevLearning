@@ -1,0 +1,40 @@
+Setting up MSYS2
+- Download MSYS2 installer
+- Open MSYS2 MSYS
+- Run "pacman -Syu"
+- Run "pacman -Su"
+- Run "pacman -S base-devel mingw-w64-x86_64-gcc" (Dev Tools)
+- Run "pacman -S make" if make isn't included. "which make"
+- Run "pacman -S gdb" (Debugger)
+
+Making the Cross-Compiler
+Install Docker and set it up to have a container that has binutils, GCC, GMP, MPC, MPFR
+As of making this I used:
+- binutils-2.43
+- gcc-12.2.0
+- gmp-6.3.0
+- mpc-1.3.1
+- mpfr-4.2.1
+
+Used included Dockerfile to setup container
+
+Qemu
+- Install Qemu
+- Make sure Qemu is part of the path
+- Run "qemu-system-i386 --version"
+	- If problems, edit with "nano ~/.bashrc"
+	- Add at end of file 'export PATH="/c/Program Files/qemu:$PATH"'
+	- Save file by ctrl + x, then Y, then Enter
+	- Restart MSYS2
+	- Verify version again
+
+Use command "qemu-system-i386 -kernel path\to\kernel.bin" to emulate 32-bit OS
+
+WSL
+- Install WSL with "wsl --install" in a Windows Terminal (Admin) / Right-click start and choose terminal (Admin)
+- After restarting set a UNIX user and password
+- Run "sudo apt update && sudo apt upgrade -y" (Update Linux)
+- Run "sudo apt install build-essential" (Dev essentials)
+- Run "sudo apt install grub-pc-bin qemu" (GRUB and QEMU)
+- If QEMU is already installed, explicitly call QEMU by "/mnt/c/Program\ Files\ \(x86\)/qemu/qemu-system-i386.exe --version" (might change depending on where QEMU is located)
+
