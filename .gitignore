@@ -1,0 +1,5 @@
+# Ignore all created and compiled files
+*.o
+*.bin
+*.iso
+/BareBones/isodir/*

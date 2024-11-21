@@ -1,11 +1,15 @@
+*** Not sure if I need MSYS2 anymore ***
+
 Setting up MSYS2
-- Download MSYS2 installer
-- Open MSYS2 MSYS
-- Run "pacman -Syu"
-- Run "pacman -Su"
-- Run "pacman -S base-devel mingw-w64-x86_64-gcc" (Dev Tools)
-- Run "pacman -S make" if make isn't included. "which make"
-- Run "pacman -S gdb" (Debugger)
+1. Download MSYS2 installer
+2. Open MSYS2 MSYS
+3. Run "pacman -Syu"
+4. Run "pacman -Su"
+5. Run "pacman -S base-devel mingw-w64-x86_64-gcc" (Dev Tools)
+6. Run "pacman -S make" if make isn't included. "which make"
+7. Run "pacman -S gdb" (Debugger)
+
+*** Not sure if I need MSYS2 anymore ***
 
 Making the Cross-Compiler
 Install Docker and set it up to have a container that has binutils, GCC, GMP, MPC, MPFR
@@ -19,22 +23,25 @@ As of making this I used:
 Used included Dockerfile to setup container
 
 Qemu
-- Install Qemu
-- Make sure Qemu is part of the path
-- Run "qemu-system-i386 --version"
-	- If problems, edit with "nano ~/.bashrc"
-	- Add at end of file 'export PATH="/c/Program Files/qemu:$PATH"'
-	- Save file by ctrl + x, then Y, then Enter
-	- Restart MSYS2
-	- Verify version again
+1. Install Qemu
+2. Make sure Qemu is part of the path for Windows
+3. Run "qemu-system-i386 --version"
+	a) If problems, edit with "nano ~/.bashrc"
+	b) Add at end of file: 
+	export PATH="/c/Program Files/qemu:$PATH"
+	alias qemu-system-i386="qemu-system-i386.exe"
+	alias qemu-system-x86_64="qemu-system-x86_64.exe"
+	c) Save file by ctrl + x, then Y, then Enter
+	d) Verify version again
 
 Use command "qemu-system-i386 -kernel path\to\kernel.bin" to emulate 32-bit OS
 
 WSL
-- Install WSL with "wsl --install" in a Windows Terminal (Admin) / Right-click start and choose terminal (Admin)
-- After restarting set a UNIX user and password
-- Run "sudo apt update && sudo apt upgrade -y" (Update Linux)
-- Run "sudo apt install build-essential" (Dev essentials)
-- Run "sudo apt install grub-pc-bin qemu" (GRUB and QEMU)
-- If QEMU is already installed, explicitly call QEMU by "/mnt/c/Program\ Files\ \(x86\)/qemu/qemu-system-i386.exe --version" (might change depending on where QEMU is located)
+1. Install WSL with "wsl --install" in a Windows Terminal (Admin) / Right-click start and choose terminal (Admin)
+2. After restarting set a UNIX user and password
+3. Run "sudo apt update && sudo apt upgrade -y" (Update Linux)
+4. Run "sudo apt install build-essential" (Dev essentials)
+5. Run "sudo apt install grub-pc-bin qemu" (GRUB and QEMU)
+6. Run "sudo apt install xorriso" (xorriso)
+7. If QEMU is already installed, explicitly call QEMU by "/mnt/c/Program\ Files\ \(x86\)/qemu/qemu-system-i386.exe --version" (might change depending on where QEMU is located) or follow qemu instructions
 

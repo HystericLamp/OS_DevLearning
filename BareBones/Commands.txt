@@ -1,0 +1,21 @@
+# Compile commands used
+i686-elf-as boot.s -o boot.o
+i686-elf-gcc -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+i686-elf-gcc -T linker.ld -o barebones.bin -ffreestanding -O2 -nostdlib boot.o kernel.o -lgcc
+
+# Useful Docker commands
+docker run -it -v /c/Users/YourName/project:/project <container_image_name>
+docker exec -it <container_id_or_name> /bin/bash
+
+# Grub Commands
+grub-file --is-x86-multiboot barebones.bin
+
+# Create iso
+mkdir -p isodir/boot/grub
+cp barebones.bin isodir/boot/barebones.bin
+cp grub.cfg isodir/boot/grub/grub.cfg
+grub-mkrescue -o barebones.iso isodir
+
+# Testing and running QEMU
+qemu-system-i386 -cdrom myos.iso (starts a new virtual machine containing only your ISO as a cdrom)
+qemu-system-i386 -kernel myos.bin (booting multiboot kernels directly without bootable medium)
