@@ -1,0 +1,6 @@
+# Ignore all created and compiled files
+*.o
+*.bin
+*.iso
+isodir
+sysroot
